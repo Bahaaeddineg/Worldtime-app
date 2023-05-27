@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeapp/views/time.dart';
+import '../components/components.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -9,8 +10,8 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  double screenHeight = 0;
-  double screenWidth = 0;
+  late double screenHeight;
+  late double screenWidth;
 
   bool startAnimation = false;
 
@@ -43,24 +44,17 @@ class _MenuState extends State<Menu> {
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "Countries",
-                style: TextStyle(
-                    fontSize: 30, color: Colors.white, fontFamily: "Sigmar"),
-              ),
+              customText('Countries', true, 30, "Sigmar", Colors.white,
+                  FontWeight.normal, 0),
               const SizedBox(
                 height: 30,
               ),
               ListView.builder(
-                primary: false,
                 shrinkWrap: true,
                 itemCount: times.length,
                 itemBuilder: (context, index) {
                   return item(index);
                 },
-              ),
-              const SizedBox(
-                height: 50,
               ),
             ],
           ),
@@ -71,13 +65,13 @@ class _MenuState extends State<Menu> {
 
   Widget item(int index) {
     void updateData(index) async {
-      TimeData instance = times[index];
+      final TimeData instance = times[index];
       await instance.getTime();
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, '/home', arguments: {
         'location': instance.location,
         'time': instance.time,
-        'isDayorNight': instance.isDayorNight,
+        'isDayorNight': instance.isDN,
         'flag': instance.flag
       });
     }
@@ -85,8 +79,8 @@ class _MenuState extends State<Menu> {
     return AnimatedContainer(
         height: 55,
         width: screenWidth,
-        curve: Curves.easeInOut,
-        duration: Duration(milliseconds: 300 + (index * 200)),
+        curve: Curves.easeInToLinear,
+        duration: Duration(milliseconds: 300 + (index * 100)),
         transform:
             Matrix4.translationValues(startAnimation ? 0 : screenWidth, 0, 0),
         margin: const EdgeInsets.only(
@@ -96,15 +90,15 @@ class _MenuState extends State<Menu> {
           horizontal: screenWidth / 20,
         ),
         decoration: BoxDecoration(
-          color: Colors.blueAccent,
+          color: Colors.indigoAccent,
           borderRadius: BorderRadius.circular(10),
         ),
         child: ListTile(
           onTap: () => updateData(index),
-          title: Text(times[index].location,
-              style: const TextStyle(fontSize: 17, fontFamily: "Sigmar")),
+          title: customText(times[index].location, false, 17, "Sigmar",
+              Colors.black, FontWeight.normal, 0),
           leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/images/${times[index].flag}'),
+            backgroundImage: AssetImage('assets/${times[index].flag}'),
           ),
         ));
   }

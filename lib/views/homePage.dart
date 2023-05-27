@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import '../components/components.dart';
 import 'Menu.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
   Widget build(BuildContext context) {
-    Map data = ModalRoute.of(context)?.settings.arguments as Map;
+    final Map data = ModalRoute.of(context)?.settings.arguments as Map;
 
-    String imge = data[
-            'isDayorNight'] // pour afficher une image du ciel au jour si le temps <20 sinon // image du ciel au nuit
-        ? 'assets/images/night_sky.jpg'
-        : 'assets/images/clear_sky.jpg';
+    final String imge =
+        data['isDayorNight'] ? 'assets/night_sky.jpg' : 'assets/clear_sky.jpg';
     return Scaffold(
       backgroundColor:
           data['isDayorNight'] ? Colors.indigoAccent : Colors.blueAccent,
@@ -24,61 +18,44 @@ class _HomeState extends State<Home> {
         child: Container(
           decoration: BoxDecoration(
               image:
-                  DecorationImage(image: AssetImage(imge), fit: BoxFit.cover)),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Center(
-                    child: Text(
-                  data['location'],
-                  style: const TextStyle(
-                      letterSpacing: 3,
-                      fontSize: 35,
-                      fontFamily: "Sigmar",
-                      color: Colors.white),
-                )),
-                const SizedBox(
-                  height: 10,
+                  DecorationImage(image: AssetImage(imge), fit: BoxFit.fill)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              customText(data['location'], true,35, "Bebas", Colors.white,
+                  FontWeight.normal, 2),
+              const SizedBox(
+                height: 10,
+              ),
+              CircleAvatar(
+                radius: 130,
+                backgroundImage: AssetImage("assets/${data['flag']}"),
+              ),
+              const SizedBox(height: 10),
+              customText(data['time'], true,40, "Bebas", Colors.white,
+                  FontWeight.normal, 2),
+              Padding(
+                padding: const EdgeInsets.only(
+                    right: 70, left: 70, bottom: 10, top: 10),
+                child: MaterialButton(
+                  onPressed: () => Navigator.of(context).pushReplacement(
+                    PageTransition(
+                        child: const Menu(),
+                        type: PageTransitionType.rightToLeft,
+                        duration: const Duration(milliseconds: 900)),
+                  ),
+                  color: Colors.blueAccent,
+                  child: customText('CHOOSE COUNTRY', true,15, "Sigmar",
+                      Colors.black, FontWeight.bold, 1),
                 ),
-                CircleAvatar(
-                  radius: 130,
-                  backgroundImage: AssetImage("assets/images/${data['flag']}"),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  data['time'],
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      letterSpacing: 3,
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontFamily: "Sigmar"),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                    padding:
-                        const EdgeInsets.only(right: 70, left: 70, bottom: 10),
-                    child: MaterialButton(
-                      onPressed: () => Navigator.of(context).push(
-                        PageTransition(
-                            child: const Menu(),
-                            type: PageTransitionType.bottomToTop,
-
-                            duration: const Duration(seconds: 1)),
-                      ),
-                      color: Colors.blueAccent,
-                      child: const Text(
-                        'CHOOSE COUNTRY',
-                        style: TextStyle(fontFamily: "Sigmar", fontSize: 15),
-                      ),
-                    )),
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),
     );
   }
+
+ 
 }

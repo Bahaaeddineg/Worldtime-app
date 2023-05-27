@@ -15,10 +15,10 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
   void timefunc() async {
     //pour afficher la premiere view aprés le loading page
-    TimeData instance = times[0];
+    final TimeData instance = times[0];
     await instance.getTime();
     // ignore: use_build_context_synchronously
-    Navigator.of(context).push(PageTransition(
+    Navigator.of(context).pushReplacement(PageTransition(
         child: const Menu(),
         type: PageTransitionType.bottomToTop,
         duration: const Duration(seconds: 2)));
