@@ -1,7 +1,7 @@
 import 'package:page_transition/page_transition.dart';
 import 'package:timeapp/views/Menu.dart';
 
-import 'time.dart';
+import '../components/time.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -34,10 +34,11 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo,
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Lottie.network(
-            "https://assets9.lottiefiles.com/packages/lf20_k0dvn0vb.json"),
-      ]),
+      body: Center(
+        child: Lottie.network(
+              "https://assets9.lottiefiles.com/packages/lf20_k0dvn0vb.json"),
+      ),
+      
     );
   }
 }

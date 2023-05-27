@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timeapp/views/time.dart';
+import 'package:timeapp/components/time.dart';
 import '../components/components.dart';
 
 class Menu extends StatefulWidget {
@@ -50,6 +50,9 @@ class _MenuState extends State<Menu> {
                 height: 30,
               ),
               ListView.builder(
+                primary: false,
+                addAutomaticKeepAlives: false,
+                addRepaintBoundaries: false,
                 shrinkWrap: true,
                 itemCount: times.length,
                 itemBuilder: (context, index) {
