@@ -71,7 +71,7 @@ class _MenuState extends State<Menu> {
       final TimeData instance = times[index];
       await instance.getTime();
       // ignore: use_build_context_synchronously
-      Navigator.pushNamed(context, '/home', arguments: {
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
         'location': instance.location,
         'time': instance.time,
         'isDayorNight': instance.isDN,
