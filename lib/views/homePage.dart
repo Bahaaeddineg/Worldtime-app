@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
                     PageTransition(
                         child: const Menu(),
                         type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 500)),
+                        duration: const Duration(milliseconds: 300)),
                   ),
                   color: Colors.blueAccent,
                   child: customText('CHOOSE COUNTRY', true,15, "Sigmar",
