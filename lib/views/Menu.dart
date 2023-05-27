@@ -86,7 +86,7 @@ class _MenuState extends State<Menu> {
         height: 55,
         width: screenWidth,
         curve: Curves.easeInOut,
-        duration: Duration(milliseconds: 100 + (index * 200)),
+        duration: Duration(milliseconds: 300 + (index * 200)),
         transform:
             Matrix4.translationValues(startAnimation ? 0 : screenWidth, 0, 0),
         margin: const EdgeInsets.only(
@@ -102,7 +102,7 @@ class _MenuState extends State<Menu> {
         child: ListTile(
           onTap: () => updateData(index),
           title: Text(times[index].location,
-              style: const TextStyle(fontSize: 20, fontFamily: "Sigmar")),
+              style: const TextStyle(fontSize: 17, fontFamily: "Sigmar")),
           leading: CircleAvatar(
             backgroundImage: AssetImage('assets/images/${times[index].flag}'),
           ),

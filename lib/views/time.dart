@@ -39,19 +39,19 @@ List<TimeData> times = [
   TimeData(
       flag: 'London.jpg',
       site: "http://worldtimeapi.org/api/timezone/Europe/London",
-      location: 'London',
+      location: 'England',
       time: 'fzfzf',
       isDayorNight: false),
   TimeData(
       flag: 'New_york.jpg',
       site: "http://worldtimeapi.org/api/timezone/America/New_York",
-      location: 'New York',
+      location: 'America',
       time: 'fzfzf',
       isDayorNight: false),
   TimeData(
       flag: 'Cairo.jpg',
       site: "http://worldtimeapi.org/api/timezone/Africa/Cairo",
-      location: 'Cairo',
+      location: 'Egypt',
       time: 'fzfzf',
       isDayorNight: false),
   TimeData(

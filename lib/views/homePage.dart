@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
                   style: const TextStyle(
                       letterSpacing: 3,
                       color: Colors.white,
-                      fontSize: 50,
+                      fontSize: 40,
                       fontFamily: "Sigmar"),
                 ),
                 const SizedBox(height: 10),
@@ -65,12 +65,13 @@ class _HomeState extends State<Home> {
                         PageTransition(
                             child: const Menu(),
                             type: PageTransitionType.bottomToTop,
-                            duration: Duration(seconds: 1)),
+
+                            duration: const Duration(seconds: 1)),
                       ),
                       color: Colors.blueAccent,
                       child: const Text(
                         'CHOOSE COUNTRY',
-                        style: TextStyle(fontFamily: "Sigmar", fontSize: 18),
+                        style: TextStyle(fontFamily: "Sigmar", fontSize: 15),
                       ),
                     )),
               ],
