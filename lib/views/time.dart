@@ -8,15 +8,13 @@ class TimeData {
   String site;
   String flag;
   bool isDayorNight;
-  
+
   TimeData(
       {required this.flag,
       required this.site,
       required this.location,
       required this.time,
       required this.isDayorNight});
-
-
 
   Future<void> getTime() async {
     var url = Uri.parse(site);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeapp/views/time.dart';
 
-
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
 
@@ -15,7 +14,6 @@ class _MenuState extends State<Menu> {
 
   bool startAnimation = false;
 
-  
   @override
   void initState() {
     super.initState();
@@ -33,7 +31,7 @@ class _MenuState extends State<Menu> {
     screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor:  Colors.indigo,
+      backgroundColor: Colors.indigo,
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -42,18 +40,17 @@ class _MenuState extends State<Menu> {
           ),
           child: Column(
             children: [
-              const SizedBox(height: 30,),
-             const Text(
-                  "Countries",
-                  style: TextStyle(
-                    fontSize: 30,
-                    
-                    color: Colors.white,
-                    fontFamily: "Sigmar"
-                  ),
-                ),
-              
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                "Countries",
+                style: TextStyle(
+                    fontSize: 30, color: Colors.white, fontFamily: "Sigmar"),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               ListView.builder(
                 primary: false,
                 shrinkWrap: true,
@@ -62,7 +59,9 @@ class _MenuState extends State<Menu> {
                   return item(index);
                 },
               ),
-              const SizedBox(height: 50,),
+              const SizedBox(
+                height: 50,
+              ),
             ],
           ),
         ),
@@ -81,33 +80,32 @@ class _MenuState extends State<Menu> {
         'isDayorNight': instance.isDayorNight,
         'flag': instance.flag
       });
-      
     }
+
     return AnimatedContainer(
-      height: 55,
-      width: screenWidth,
-      curve: Curves.easeInOut,
-      duration: Duration(milliseconds: 100 + (index * 200)),
-      transform: Matrix4.translationValues(startAnimation ? 0 : screenWidth, 0, 0),
-      margin: const EdgeInsets.only(
-        bottom: 12,
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: screenWidth / 20,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.blueAccent,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child:  ListTile(
+        height: 55,
+        width: screenWidth,
+        curve: Curves.easeInOut,
+        duration: Duration(milliseconds: 100 + (index * 200)),
+        transform:
+            Matrix4.translationValues(startAnimation ? 0 : screenWidth, 0, 0),
+        margin: const EdgeInsets.only(
+          bottom: 12,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth / 20,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.blueAccent,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ListTile(
           onTap: () => updateData(index),
           title: Text(times[index].location,
-              style:
-                  const TextStyle(fontSize: 20,fontFamily: "Sigmar")),
+              style: const TextStyle(fontSize: 20, fontFamily: "Sigmar")),
           leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/${times[index].flag}'),
-            ),
-    ));
+            backgroundImage: AssetImage('assets/images/${times[index].flag}'),
+          ),
+        ));
   }
-
 }
