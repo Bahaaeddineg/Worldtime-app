@@ -23,8 +23,8 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              customText(data['location'], true,35, "Bebas", Colors.white,
-                  FontWeight.normal, 2),
+              customText(data['location'], true,40, "Bebas", Colors.white,
+                  FontWeight.bold, 2),
               const SizedBox(
                 height: 10,
               ),
@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
                     PageTransition(
                         child: const Menu(),
                         type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 900)),
+                        duration: const Duration(milliseconds: 500)),
                   ),
                   color: Colors.blueAccent,
                   child: customText('CHOOSE COUNTRY', true,15, "Sigmar",
