@@ -21,16 +21,15 @@ class Home extends StatelessWidget {
                   DecorationImage(image: AssetImage(imge), fit: BoxFit.fill)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               customText(data['location'], true,40, "Bebas", Colors.white,
                   FontWeight.bold, 2),
               const SizedBox(
                 height: 10,
               ),
-              CircleAvatar(
-                radius: 130,
-                backgroundImage: AssetImage("assets/${data['flag']}"),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/${data['flag']}",)),
               ),
               const SizedBox(height: 10),
               customText(data['time'], true,40, "Bebas", Colors.white,

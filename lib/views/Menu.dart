@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timeapp/components/time.dart';
 import '../components/components.dart';
+import 'homePage.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -77,6 +78,8 @@ class _MenuState extends State<Menu> {
         'isDayorNight': instance.isDN,
         'flag': instance.flag
       });
+ 
+    
     }
 
     return AnimatedContainer(
@@ -100,8 +103,8 @@ class _MenuState extends State<Menu> {
           onTap: () => updateData(index),
           title: customText(times[index].location, false, 17, "Sigmar",
               Colors.black, FontWeight.normal, 0),
-          leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/${times[index].flag}'),
+          leading: CircleAvatar(backgroundColor: Colors.indigoAccent,
+            backgroundImage: AssetImage('assets/${times[index].flag}')
           ),
         ));
   }

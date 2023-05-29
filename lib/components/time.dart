@@ -60,12 +60,6 @@ final List<TimeData> times =  [
       time: '',
       isDN: false),
   TimeData(
-      flag: 'Canada.jpg',
-      site: "http://worldtimeapi.org/api/timezone/America/Toronto",
-      location: 'Canada',
-      time: '',
-      isDN: false),
-  TimeData(
       flag: 'Saudi_Arabia.jpg',
       site: "http://worldtimeapi.org/api/timezone/Asia/Riyadh",
       location: 'Saudi Arabia',
@@ -78,9 +72,107 @@ final List<TimeData> times =  [
       time: '',
       isDN: false),
   TimeData(
-      flag: 'Turkey.jpg',
+      flag: 'Turkey.png',
       site: "http://worldtimeapi.org/api/timezone/Europe/Istanbul",
       location: 'Turkey',
+      time: '',
+      isDN: false),
+        TimeData(
+      flag: 'Morroco.png',
+      site: "http://worldtimeapi.org/api/timezone/Africa/Casablanca",
+      location: 'Morroco',
+      time: '',
+      isDN: false),
+     
+      TimeData(
+      flag: 'China.jpg',
+      site: "http://worldtimeapi.org/api/timezone/Asia/Tokyo",
+      location: 'China',
+      time: '',
+      isDN: false),
+        TimeData(
+      flag: 'Kenya.jpg',
+      site: "http://worldtimeapi.org/api/timezone/Africa/Nairobi",
+      location: 'Kenya',
+      time: '',
+      isDN: false),
+        TimeData(
+      flag: 'Mexico.png',
+      site: "http://worldtimeapi.org/api/timezone/America/Mexico_City",
+      location: 'Mexico',
+      time: '',
+      isDN: false),
+         TimeData(
+      flag: 'Allemagne.png',
+      site: "http://worldtimeapi.org/api/timezone/Europe/Berlin",
+      location: 'Germany',
+      time: '',
+      isDN: false),
+         TimeData(
+      flag: 'Qatar.png',
+      site: "http://worldtimeapi.org/api/timezone/Asia/Qatar",
+      location: 'Qatar',
+      time: '',
+      isDN: false),
+         TimeData(
+      flag: 'Emirates.png',
+      site: "http://worldtimeapi.org/api/timezone/Asia/Dubai",
+      location: 'Dubai',
+      time: '',
+      isDN: false),
+         TimeData(
+      flag: 'Beirut.jpg',
+      site: "http://worldtimeapi.org/api/timezone/Asia/Beirut",
+      location: 'Lebanon',
+      time: '',
+      isDN: false),
+         TimeData(
+      flag: 'Oman.png',
+      site: "http://worldtimeapi.org/api/timezone/Asia/Amman",
+      location: 'Oman',
+      time: '',
+      isDN: false),
+       TimeData(
+      flag: 'Canada.jpg',
+      site: "http://worldtimeapi.org/api/timezone/America/Toronto",
+      location: 'Canada',
+      time: '',
+      isDN: false),
+       TimeData(
+      flag: 'Hongrie.png',
+      site: "http://worldtimeapi.org/api/timezone/Europe/Budapest",
+      location: 'Hongrie',
+      time: '',
+      isDN: false),
+       TimeData(
+      flag: 'Finland.jpg',
+      site: "http://worldtimeapi.org/api/timezone/Europe/Helsinki",
+      location: 'Finland',
+      time: '',
+      isDN: false),
+       TimeData(
+      flag: 'Italy.png',
+      site: "http://worldtimeapi.org/api/timezone/Europe/Rome",
+      location: 'Italy',
+      time: '',
+      isDN: false),
+       TimeData(
+      flag: 'Belgium.png',
+      site: "http://worldtimeapi.org/api/timezone/Europe/Brussels",
+      location: 'Belgium',
+      time: '',
+      isDN: false),
+      
+      TimeData(
+      flag: 'Colombia.png',
+      site: "http://worldtimeapi.org/api/timezone/America/Bogota",
+      location: 'Columbia',
+      time: '',
+      isDN: false),
+      TimeData(
+      flag: 'Spain.jpg',
+      site: "http://worldtimeapi.org/api/timezone/Europe/Madrid",
+      location: 'Spain',
       time: '',
       isDN: false),
 ];
