@@ -1,6 +1,5 @@
 import 'package:page_transition/page_transition.dart';
 import 'package:timeapp/views/Menu.dart';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -17,14 +16,14 @@ class _LoadingPageState extends State<LoadingPage>{
     // ignore: use_build_context_synchronously
     Navigator.of(context).pushReplacement(PageTransition(
         child: const Menu(),
-        type: PageTransitionType.bottomToTop,
-        duration: const Duration(seconds: 2)));
+        type: PageTransitionType.fade,
+        duration: const Duration(milliseconds: 800)));
   }
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 4), () => timefunc());
+    Future.delayed(const Duration(seconds: 3), () => timefunc());
     
   }
 

@@ -8,7 +8,6 @@ class Menu extends StatefulWidget {
   @override
   State<Menu> createState() => _MenuState();
 }
-
 class _MenuState extends State<Menu> {
   late double screenHeight;
   late double screenWidth;
@@ -67,8 +66,6 @@ class _MenuState extends State<Menu> {
               ),
               ListView.builder(
                 primary: false,
-                addAutomaticKeepAlives: false,
-                addRepaintBoundaries: false,
                 shrinkWrap: true,
                 itemCount: times.length,
                 itemBuilder: (context, index) {

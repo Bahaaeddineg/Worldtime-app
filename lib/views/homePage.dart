@@ -8,7 +8,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map data = ModalRoute.of(context)?.settings.arguments as Map;
-
     final String imge =
         data['isDayorNight'] ? 'assets/night_sky.jpg' : 'assets/clear_sky.jpg';
     return Scaffold(

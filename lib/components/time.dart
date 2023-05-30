@@ -1,33 +1,6 @@
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
-
-class TimeData {
-  final String location;
-  String time;
-  final String site;
-  final String flag;
-  bool isDN;
-
-  TimeData(
-      {required this.flag,
-      required this.site,
-      required this.location,
-      required this.time,
-      required this.isDN});
-
-  Future<void> getTime() async {
-    final url = Uri.parse(site);
-    final response = await get(url);
-    final Map data = jsonDecode(response.body);
-    final String date = data['datetime'];
-    final String offset = data['utc_offset'].substring(0, 3);
-    final DateTime now = DateTime.parse(date).add(Duration(hours: int.parse(offset)));
-    isDN = (now.hour > 6 && now.hour < 20) ? false : true;
-    time = DateFormat.jm().format(now);
-  }
-}
-
 final List<TimeData> times =  [
   TimeData(
       flag: 'Algeria.jpg',
@@ -176,3 +149,30 @@ final List<TimeData> times =  [
       time: '',
       isDN: false),
 ];
+class TimeData {
+  final String location;
+  String time;
+  final String site;
+  final String flag;
+  bool isDN;
+
+  TimeData(
+      {required this.flag,
+      required this.site,
+      required this.location,
+      required this.time,
+      required this.isDN});
+
+  Future<void> getTime() async {
+    final url = Uri.parse(site);
+    final response = await get(url);
+    final Map data = jsonDecode(response.body);
+    final String date = data['datetime'];
+    final String offset = data['utc_offset'].substring(0, 3);
+    final DateTime now = DateTime.parse(date).add(Duration(hours: int.parse(offset)));
+    isDN = (now.hour > 6 && now.hour < 20) ? false : true;
+    time = DateFormat.jm().format(now);
+  }
+}
+
+
