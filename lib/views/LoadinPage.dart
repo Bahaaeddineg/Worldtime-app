@@ -1,6 +1,6 @@
 import 'package:page_transition/page_transition.dart';
 import 'package:timeapp/views/Menu.dart';
-import '../components/time.dart';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -14,8 +14,7 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage>{
 
   void timefunc() async {
-    final TimeData instance = times[0];
-    await instance.getTime();
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pushReplacement(PageTransition(
         child: const Menu(),
         type: PageTransitionType.bottomToTop,
@@ -34,7 +33,8 @@ class _LoadingPageState extends State<LoadingPage>{
     return Scaffold(
       backgroundColor: Colors.indigo,
       body: Center(
-        child: Lottie.network(
+        child: 
+        Lottie.network(
           "https://assets9.lottiefiles.com/packages/lf20_k0dvn0vb.json",
         ),
       ),

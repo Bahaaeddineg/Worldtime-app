@@ -21,7 +21,7 @@ class TimeData {
     final response = await get(url);
     final Map data = jsonDecode(response.body);
     final String date = data['datetime'];
-    final String offset = data['utc_offset'].substring(1, 3);
+    final String offset = data['utc_offset'].substring(0, 3);
     final DateTime now = DateTime.parse(date).add(Duration(hours: int.parse(offset)));
     isDN = (now.hour > 6 && now.hour < 20) ? false : true;
     time = DateFormat.jm().format(now);

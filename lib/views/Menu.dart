@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeapp/components/time.dart';
 import '../components/components.dart';
-import 'homePage.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -45,8 +44,24 @@ class _MenuState extends State<Menu> {
               const SizedBox(
                 height: 30,
               ),
-              customText('Countries', true, 30, "Sigmar", Colors.white,
-                  FontWeight.normal, 0),
+              Padding(
+                padding: const EdgeInsets.only(left: 60),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    customText('Countries', true, 30, "Sigmar", Colors.white,
+                        FontWeight.normal, 0),
+                    IconButton(
+                        onPressed: () => showSearch(
+                            context: context, delegate: CustomSearchDelegate()),
+                        icon: const Icon(
+                          Icons.search,
+                          size: 30,
+                          color: Colors.white,
+                        ))
+                  ],
+                ),
+              ),
               const SizedBox(
                 height: 30,
               ),
@@ -78,8 +93,6 @@ class _MenuState extends State<Menu> {
         'isDayorNight': instance.isDN,
         'flag': instance.flag
       });
- 
-    
     }
 
     return AnimatedContainer(
@@ -103,9 +116,79 @@ class _MenuState extends State<Menu> {
           onTap: () => updateData(index),
           title: customText(times[index].location, false, 17, "Sigmar",
               Colors.black, FontWeight.normal, 0),
-          leading: CircleAvatar(backgroundColor: Colors.indigoAccent,
-            backgroundImage: AssetImage('assets/${times[index].flag}')
-          ),
+          leading: CircleAvatar(
+              backgroundColor: Colors.indigoAccent,
+              backgroundImage: AssetImage('assets/${times[index].flag}')),
         ));
   }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      )
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List matchQuery = [];
+    for (var x in times) {
+      if (x.location.toLowerCase().startsWith(query.toLowerCase())) {
+        matchQuery.add(x);
+      }
+    }
+    return ListView.builder(
+      itemBuilder: (context, index) => ListTile(
+        title: Text(matchQuery[index].location),
+      ),
+      itemCount: matchQuery.length,
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List matchQuery = [];
+    for (var x in times) {
+      if (x.location.toLowerCase().startsWith(query.toLowerCase())) {
+        matchQuery.add(x);
+      }
+      ;
+    }
+    return ListView.builder(
+      itemBuilder: (context, index) => MaterialButton(
+        onPressed: () async {
+          final TimeData instance = matchQuery[index];
+          await instance.getTime();
+          // ignore: use_build_context_synchronously
+          Navigator.pushReplacementNamed(context, '/home', arguments: {
+            'location': instance.location,
+            'time': instance.time,
+            'isDayorNight': instance.isDN,
+            'flag': instance.flag
+          });
+        },
+        child: ListTile(
+          title: Text(matchQuery[index].location),
+        ),
+      ),
+      itemCount: matchQuery.length,
+    );
+  }
+  
 }

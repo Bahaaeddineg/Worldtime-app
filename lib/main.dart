@@ -1,7 +1,6 @@
 import 'package:timeapp/views/homePage.dart';
 import 'package:timeapp/views/Menu.dart';
 import 'package:flutter/material.dart';
-
 import 'views/LoadinPage.dart';
 
 void main() {
