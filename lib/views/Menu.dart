@@ -8,21 +8,38 @@ class Menu extends StatefulWidget {
   @override
   State<Menu> createState() => _MenuState();
 }
+
 class _MenuState extends State<Menu> {
   late double screenHeight;
   late double screenWidth;
-
   bool startAnimation = false;
-
+  List<TimeData> subList = times;
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
         startAnimation = true;
       });
     });
+  }
+
+  void filterCountries(String enteredKeyword) {
+    
+    if (enteredKeyword.isNotEmpty) {
+      setState(() {
+        subList = times
+            .where((element) => element.location
+                .toLowerCase()
+                .startsWith(enteredKeyword.toLowerCase()))
+            .toList();
+      });
+    } else {
+     setState(() {
+       subList= times;
+     });
+    }
+    
   }
 
   @override
@@ -43,23 +60,17 @@ class _MenuState extends State<Menu> {
               const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 60),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    customText('Countries', true, 30, "Sigmar", Colors.white,
-                        FontWeight.normal, 0),
-                    IconButton(
-                        onPressed: () => showSearch(
-                            context: context, delegate: CustomSearchDelegate()),
-                        icon: const Icon(
-                          Icons.search,
-                          size: 30,
-                          color: Colors.white,
-                        ))
-                  ],
-                ),
+              customText('Countries', true, 30, "Sigmar", Colors.white,
+                  FontWeight.normal, 0),
+              TextField(
+                onChanged: (value) => filterCountries(value),
+                decoration: const InputDecoration(
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                    icon: Icon(Icons.search, color: Colors.white),
+                    hintText: 'Search',
+                    hintStyle: TextStyle(fontWeight: FontWeight.bold)),
               ),
               const SizedBox(
                 height: 30,
@@ -67,7 +78,7 @@ class _MenuState extends State<Menu> {
               ListView.builder(
                 primary: false,
                 shrinkWrap: true,
-                itemCount: times.length,
+                itemCount: subList.length,
                 itemBuilder: (context, index) {
                   return item(index);
                 },
@@ -81,7 +92,7 @@ class _MenuState extends State<Menu> {
 
   Widget item(int index) {
     void updateData(index) async {
-      final TimeData instance = times[index];
+      final TimeData instance = subList[index];
       await instance.getTime();
       // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, '/home', arguments: {
@@ -111,81 +122,11 @@ class _MenuState extends State<Menu> {
         ),
         child: ListTile(
           onTap: () => updateData(index),
-          title: customText(times[index].location, false, 17, "Sigmar",
+          title: customText(subList[index].location, false, 17, "Sigmar",
               Colors.black, FontWeight.normal, 0),
           leading: CircleAvatar(
               backgroundColor: Colors.indigoAccent,
-              backgroundImage: AssetImage('assets/${times[index].flag}')),
+              backgroundImage: AssetImage('assets/${subList[index].flag}')),
         ));
   }
-}
-
-class CustomSearchDelegate extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: () {
-          query = '';
-        },
-        icon: const Icon(Icons.clear),
-      )
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: const Icon(Icons.arrow_back));
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List matchQuery = [];
-    for (var x in times) {
-      if (x.location.toLowerCase().startsWith(query.toLowerCase())) {
-        matchQuery.add(x);
-      }
-    }
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        title: Text(matchQuery[index].location),
-      ),
-      itemCount: matchQuery.length,
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List matchQuery = [];
-    for (var x in times) {
-      if (x.location.toLowerCase().startsWith(query.toLowerCase())) {
-        matchQuery.add(x);
-      }
-      ;
-    }
-    return ListView.builder(
-      itemBuilder: (context, index) => MaterialButton(
-        onPressed: () async {
-          final TimeData instance = matchQuery[index];
-          await instance.getTime();
-          // ignore: use_build_context_synchronously
-          Navigator.pushReplacementNamed(context, '/home', arguments: {
-            'location': instance.location,
-            'time': instance.time,
-            'isDayorNight': instance.isDN,
-            'flag': instance.flag
-          });
-        },
-        child: ListTile(
-          title: Text(matchQuery[index].location),
-        ),
-      ),
-      itemCount: matchQuery.length,
-    );
-  }
-  
 }

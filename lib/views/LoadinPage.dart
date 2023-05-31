@@ -10,8 +10,7 @@ class LoadingPage extends StatefulWidget {
   State<LoadingPage> createState() => _LoadingPageState();
 }
 
-class _LoadingPageState extends State<LoadingPage>{
-
+class _LoadingPageState extends State<LoadingPage> {
   void timefunc() async {
     // ignore: use_build_context_synchronously
     Navigator.of(context).pushReplacement(PageTransition(
@@ -24,19 +23,17 @@ class _LoadingPageState extends State<LoadingPage>{
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () => timefunc());
-    
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.indigo,
-      body: Center(
-        child: 
-        Lottie.network(
-          "https://assets9.lottiefiles.com/packages/lf20_k0dvn0vb.json",
-        ),
-      ),
+    return  Scaffold(
+              backgroundColor: Colors.indigo,
+              body: Center(
+                child: Lottie.network(
+                  "https://assets9.lottiefiles.com/packages/lf20_k0dvn0vb.json",
+                ),
+              ),
     );
   }
 }
