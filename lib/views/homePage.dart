@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     right: 70, left: 70, bottom: 10, top: 10),
                 child: MaterialButton(
-                  onPressed: () => Navigator.of(context).push(
+                  onPressed: () => Navigator.of(context).pushReplacement(
                     PageTransition(
                         child: const Menu(),
                         type: PageTransitionType.rightToLeft,
