@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timeapp/components/time.dart';
+import 'package:timeapp/data/time.dart';
 import '../components/components.dart';
 
 class Menu extends StatefulWidget {
