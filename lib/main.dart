@@ -11,6 +11,10 @@ void main() {
     DeviceOrientation.portraitDown
     
   ]);
+  
+ SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
   runApp(MaterialApp(debugShowCheckedModeBanner: false, routes: {
     '/': (context) => const LoadingPage(),
     '/home': (context) => const Home(),

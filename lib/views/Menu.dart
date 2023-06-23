@@ -25,7 +25,6 @@ class _MenuState extends State<Menu> {
   }
 
   void filterCountries(String enteredKeyword) {
-    
     if (enteredKeyword.isNotEmpty) {
       setState(() {
         subList = times
@@ -35,11 +34,10 @@ class _MenuState extends State<Menu> {
             .toList();
       });
     } else {
-     setState(() {
-       subList= times;
-     });
+      setState(() {
+        subList = times;
+      });
     }
-    
   }
 
   @override

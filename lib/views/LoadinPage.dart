@@ -31,7 +31,7 @@ class _LoadingPageState extends State<LoadingPage> {
               backgroundColor: Colors.indigo,
               body: Center(
                 child: Lottie.network(
-                  "https://assets9.lottiefiles.com/packages/lf20_k0dvn0vb.json",
+                  "https://assets9.lottiefiles.com/packages/lf20_eAqEBOw7m9.json",
                 ),
               ),
     );
